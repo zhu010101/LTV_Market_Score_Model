@@ -36,22 +36,22 @@ def generate_zip_level_report(input_file, output_folder, column="MARKET_SCORE"):
     plt.close()
 
     # Top 10 ZIP Codes
-    top_10 = data.nlargest(10, column)[["REGION", column]]
+    top_10 = data.nlargest(10, column).drop_duplicates(subset="REGION")[["REGION", column]]
     plt.figure(figsize=(10, 6))
-    sns.barplot(x=column, y="REGION", data=top_10, palette="viridis")
+    sns.barplot(x="REGION", y=column, data=top_10, palette="viridis")
     plt.title(f"Top 10 ZIP Codes by {column}", fontsize=16)
-    plt.xlabel(column, fontsize=12)
-    plt.ylabel("ZIP Code", fontsize=12)
+    plt.xlabel("ZIP Code", fontsize=12)
+    plt.ylabel(column, fontsize=12)
     plt.savefig(f"{output_folder}/top_10_{column}_zipcodes.png", dpi=300, bbox_inches='tight')
     plt.close()
 
     # Bottom 10 ZIP Codes
-    bottom_10 = data.nsmallest(10, column)[["REGION", column]]
+    bottom_10 = data.nsmallest(10, column).drop_duplicates(subset="REGION")[["REGION", column]]
     plt.figure(figsize=(10, 6))
-    sns.barplot(x=column, y="REGION", data=bottom_10, palette="mako")
+    sns.barplot(x="REGION", y=column, data=bottom_10, palette="mako")
     plt.title(f"Bottom 10 ZIP Codes by {column}", fontsize=16)
-    plt.xlabel(column, fontsize=12)
-    plt.ylabel("ZIP Code", fontsize=12)
+    plt.xlabel("ZIP Code", fontsize=12)
+    plt.ylabel(column, fontsize=12)
     plt.savefig(f"{output_folder}/bottom_10_{column}_zipcodes.png", dpi=300, bbox_inches='tight')
     plt.close()
 

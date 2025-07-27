@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "output",
+			"path": "../Downloads/LTV_Model/output"
+		},
+		{
+			"name": "LTV_model",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
